@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../Downloads/pyhdf-0.11.4/pyhdf"
+		}
+	],
+	"settings": {}
+}

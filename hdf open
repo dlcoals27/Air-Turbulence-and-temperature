@@ -1,0 +1,18 @@
+import tables
+import gdal as SD
+
+# Path to HDF file
+file_path = 'MOD11C3.A2022001.061.2022032100901.hdf'
+dataset = rxr.open_rasterio(file_path, masked=True)
+
+# Try to open the file
+#try:
+    #with tables.open_file(file_path, mode='r') as f:
+        #print("File opened successfully!")
+        
+        # Print the root structure (top-level groups and datasets)
+        #print("Root structure:", f.root)
+
+
+#except Exception as e:
+    #print(f"Failed to open the file: {e}")

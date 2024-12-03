@@ -1,0 +1,33 @@
+import pandas as pd
+
+# Read the CSV files
+jan_data = pd.read_csv("012022_data.csv")
+dec_data = pd.read_csv("122022_data.csv")
+
+# Step 1: Extract latitude and longitude from the top-left corner
+# The first column contains latitude values, and the first row contains longitude values
+latitudes = jan_data.iloc[1:, 0].values  # Latitude values (exclude the first row/column)
+longitudes = jan_data.columns[1:].values  # Longitude values (exclude the first column)
+
+# Step 2: Convert the temperature data to a DataFrame with correct lat/lon grid
+# For January
+temperature_data_jan = jan_data.iloc[1:, 1:].values  # Temperature data (excluding first row/column)
+temperature_data_jan = pd.DataFrame(temperature_data_jan, columns=longitudes, index=latitudes)
+
+# For December
+temperature_data_dec = dec_data.iloc[1:, 1:].values  # Temperature data (excluding first row/column)
+temperature_data_dec = pd.DataFrame(temperature_data_dec, columns=longitudes, index=latitudes)
+
+# Step 3: Calculate the temperature change (December - January)
+temperature_change = temperature_data_dec - temperature_data_jan
+
+# Step 4: Flatten the data for easy plotting (lat/lon pairs)
+temperature_change = temperature_change.reset_index().melt(id_vars=['index'], var_name='Longitude', value_name='Temp_Change')
+
+# Step 5: Rename columns for clarity
+temperature_change.rename(columns={'index': 'Latitude'}, inplace=True)
+
+# Step 6: Now you have the temperature change for each lat/lon pair in the `temperature_change` DataFrame
+print(temperature_change.head())  # Print a sample to verify
+print(temperature_change.tail())  # Print a sample to verify
+
