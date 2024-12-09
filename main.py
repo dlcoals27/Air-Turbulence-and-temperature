@@ -1,7 +1,7 @@
 
-from dbfread import DBF
+# from dbfread import DBF
 import csv
-import tables
+# import tables
 import pandas as pd
 from shapely.geometry import Point
 import geopandas as gpd
@@ -15,9 +15,9 @@ import numpy as np
 import matplotlib.cm as cm
 
 # Open the DBF file
-table = DBF('pireps_202409010000_202410262359.dbf', encoding='utf-8')
+# table = DBF('pireps_202409010000_202410262359.dbf', encoding='utf-8')
 # Open the hdf file
-hdf_file = 'MOD11C3.A2022001.061.2022032100901.hdf'
+# hdf_file = 'MOD11C3.A2022001.061.2022032100901.hdf'
 csv_file = 'temperature.csv'
 
 """
@@ -71,7 +71,11 @@ gdf.plot(ax=world.plot(figsize=(10, 6)), marker='o', color=df['color'], markersi
 
 plt.show()
 
+# Need to add underlying color for temp change
+
+
 # make values for a typical coordinate grid with a specified step
+"""
 step = 1
 lons_full = np.arange(-179.125, 179.125 + step, step)
 lats_full = np.arange(89.125, -89.125 - step, -step) # latitudes range from 90 to -90 to match array row indices growing from top to bottom
@@ -130,3 +134,4 @@ cb = fig.colorbar(im)
 cb.set_label('Numero di trip_count unici per cella')
 
 plt.show()
+"""
